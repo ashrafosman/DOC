@@ -1,7 +1,7 @@
 {
   "framework": null,
-  "installCommand": "pip install -r requirements.txt",
-  "buildCommand": "echo 'Using pre-built assets'",
+  "installCommand": "echo skip",
+  "buildCommand": "echo skip",
   "outputDirectory": "src/mn_doc_poc/__dist__",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/index" }
