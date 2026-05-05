@@ -1,11 +1,8 @@
 {
+  "framework": null,
+  "buildCommand": "echo 'Using pre-built assets'",
+  "outputDirectory": "src/mn_doc_poc/__dist__",
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/index" },
-    { "source": "/(.*)", "destination": "/api/index" }
-  ],
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 30
-    }
-  }
+    { "source": "/api/:path*", "destination": "/api/index" }
+  ]
 }
