@@ -1,10 +1,11 @@
 from typing import Annotated
 from fastapi import Query, HTTPException
 
-from databricks.sdk.service.iam import User as UserOut
-
 from .core import Dependencies, create_router
 from .models import (
+    CurrentUser,
+    UserName,
+    ComplexValue,
     VersionOut,
     PersonaInfo,
     ClientRecord,
@@ -210,9 +211,24 @@ async def version():
     return VersionOut.from_metadata()
 
 
-@router.get("/current-user", response_model=UserOut, operation_id="currentUser")
+@router.get("/current-user", response_model=CurrentUser, operation_id="currentUser")
 def me(user_ws: Dependencies.UserClient):
-    return user_ws.current_user.me()
+    sdk_user = user_ws.current_user.me()
+    return CurrentUser(
+        id=sdk_user.id,
+        user_name=sdk_user.user_name,
+        display_name=sdk_user.display_name,
+        active=sdk_user.active,
+        external_id=sdk_user.external_id,
+        name=UserName(
+            given_name=sdk_user.name.given_name if sdk_user.name else None,
+            family_name=sdk_user.name.family_name if sdk_user.name else None,
+        ) if sdk_user.name else None,
+        emails=[ComplexValue(value=getattr(e, "value", None), display=getattr(e, "display", None), primary=getattr(e, "primary", None)) for e in (sdk_user.emails or [])],
+        groups=[ComplexValue(value=getattr(g, "value", None), display=getattr(g, "display", None)) for g in (sdk_user.groups or [])],
+        roles=[ComplexValue(value=getattr(r, "value", None)) for r in (sdk_user.roles or [])],
+        entitlements=[ComplexValue(value=getattr(e, "value", None)) for e in (sdk_user.entitlements or [])],
+    )
 
 
 @router.get("/personas", response_model=list[PersonaInfo], operation_id="getPersonas")

@@ -89,6 +89,18 @@ export interface ComplexValue {
     type?: string | null;
     value?: string | null;
 }
+export interface CurrentUser {
+    active?: boolean | null;
+    display_name?: string | null;
+    emails?: ComplexValue[] | null;
+    entitlements?: ComplexValue[] | null;
+    external_id?: string | null;
+    groups?: ComplexValue[] | null;
+    id?: string | null;
+    name?: UserName | null;
+    roles?: ComplexValue[] | null;
+    user_name?: string | null;
+}
 export interface FacilityStatsItem {
     avg_risk_score: number;
     facility: string;
@@ -141,10 +153,6 @@ export interface LineageNode {
 export interface LineageResponse {
     edges: LineageEdge[];
     nodes: LineageNode[];
-}
-export interface Name {
-    family_name?: string | null;
-    given_name?: string | null;
 }
 export interface PersonaInfo {
     can_access_analytics: boolean;
@@ -202,24 +210,10 @@ export interface TimelineEvent {
     severity?: string | null;
     title: string;
 }
-export interface User {
-    active?: boolean | null;
-    display_name?: string | null;
-    emails?: ComplexValue[] | null;
-    entitlements?: ComplexValue[] | null;
-    external_id?: string | null;
-    groups?: ComplexValue[] | null;
-    id?: string | null;
-    name?: Name | null;
-    roles?: ComplexValue[] | null;
-    schemas?: UserSchema[] | null;
-    user_name?: string | null;
+export interface UserName {
+    family_name?: string | null;
+    given_name?: string | null;
 }
-export const UserSchema = {
-    "urn:ietf:params:scim:schemas:core:2.0:User": "urn:ietf:params:scim:schemas:core:2.0:User",
-    "urn:ietf:params:scim:schemas:extension:workspace:2.0:User": "urn:ietf:params:scim:schemas:extension:workspace:2.0:User"
-} as const;
-export type UserSchema = typeof UserSchema[keyof typeof UserSchema];
 export interface ValidationError {
     ctx?: Record<string, unknown>;
     input?: unknown;
@@ -480,7 +474,7 @@ export interface CurrentUserParams {
     "X-Forwarded-Access-Token"?: string | null;
 }
 export const currentUser = async (params?: CurrentUserParams, options?: RequestInit): Promise<{
-    data: User;
+    data: CurrentUser;
 }> =>{
     const res = await fetch("/api/current-user", {
         ...options,
@@ -528,11 +522,11 @@ export const currentUserKey = (params?: CurrentUserParams)=>{
     ] as const;
 };
 export function useCurrentUser<TData = {
-    data: User;
+    data: CurrentUser;
 }>(options?: {
     params?: CurrentUserParams;
     query?: Omit<UseQueryOptions<{
-        data: User;
+        data: CurrentUser;
     }, ApiError, TData>, "queryKey" | "queryFn">;
 }) {
     return useQuery({
@@ -542,11 +536,11 @@ export function useCurrentUser<TData = {
     });
 }
 export function useCurrentUserSuspense<TData = {
-    data: User;
+    data: CurrentUser;
 }>(options?: {
     params?: CurrentUserParams;
     query?: Omit<UseSuspenseQueryOptions<{
-        data: User;
+        data: CurrentUser;
     }, ApiError, TData>, "queryKey" | "queryFn">;
 }) {
     return useSuspenseQuery({

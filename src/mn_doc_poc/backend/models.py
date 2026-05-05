@@ -1,6 +1,32 @@
-from typing import Optional
+from typing import Optional, Any
 from pydantic import BaseModel
 from .. import __version__
+
+
+class UserName(BaseModel):
+    given_name: Optional[str] = None
+    family_name: Optional[str] = None
+
+
+class ComplexValue(BaseModel):
+    value: Optional[str] = None
+    display: Optional[str] = None
+    primary: Optional[bool] = None
+    type: Optional[str] = None
+    ref: Optional[str] = None
+
+
+class CurrentUser(BaseModel):
+    id: Optional[str] = None
+    user_name: Optional[str] = None
+    display_name: Optional[str] = None
+    active: Optional[bool] = None
+    external_id: Optional[str] = None
+    name: Optional[UserName] = None
+    emails: Optional[list[ComplexValue]] = None
+    groups: Optional[list[ComplexValue]] = None
+    roles: Optional[list[ComplexValue]] = None
+    entitlements: Optional[list[ComplexValue]] = None
 
 
 class VersionOut(BaseModel):
