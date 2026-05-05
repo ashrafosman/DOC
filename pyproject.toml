@@ -17,7 +17,7 @@ dev = [
 ]
 
 [tool.apx.metadata]
-app-name = "mn-doc-poc"
+app-name = "DOC"
 app-slug = "mn_doc_poc"
 app-entrypoint = "mn_doc_poc.backend.app:app"
 api-prefix = "/api"

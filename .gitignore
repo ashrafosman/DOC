@@ -38,3 +38,9 @@ node_modules/
 
 # UI dist folder
 src/mn_doc_poc/__dist__/
+
+# playwright
+.playwright-mcp/
+
+# screenshots
+*.png
