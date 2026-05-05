@@ -1,5 +1,6 @@
 {
   "framework": null,
+  "installCommand": "pip install -r requirements.txt",
   "buildCommand": "echo 'Using pre-built assets'",
   "outputDirectory": "src/mn_doc_poc/__dist__",
   "rewrites": [
