@@ -1,8 +1,8 @@
 {
   "framework": null,
   "installCommand": "echo skip",
-  "buildCommand": "echo skip",
-  "outputDirectory": "src/mn_doc_poc/__dist__",
+  "buildCommand": "mkdir -p dist && cp -r src/mn_doc_poc/__dist__/* dist/",
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/index" }
   ]
