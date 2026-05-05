@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-D7u49h76.js";import{P as t}from"./index-Cn6VfQwY.js";var n=e(),r=()=>(0,n.jsx)(t,{to:`/client-journey`});export{r as component};
