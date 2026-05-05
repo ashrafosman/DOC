@@ -1,0 +1,22 @@
+bundle:
+  name: mn-doc-poc
+
+sync:
+  include:
+    - .build
+
+artifacts:
+  default:
+    build: apx build
+
+resources:
+  apps:
+    mn-doc-poc-app:
+      name: "mn-doc-poc"
+      description: "mn-doc-poc created with apx"
+      source_code_path: ./.build
+
+targets:
+  dev:
+    mode: development
+    default: true

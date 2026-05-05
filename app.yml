@@ -1,0 +1,1 @@
+command: ["uvicorn", "mn_doc_poc.backend.app:app", "--workers", "2"]
