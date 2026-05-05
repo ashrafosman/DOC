@@ -1,11 +1,5 @@
 {
-  "buildCommand": "mkdir -p dist && cp -r src/mn_doc_poc/__dist__/* dist/",
-  "outputDirectory": "dist",
-  "functions": {
-    "api/index.py": {
-      "includeFiles": "src/**"
-    }
-  },
+  "buildCommand": "mkdir -p public && cp -r src/mn_doc_poc/__dist__/* public/ && cp -r src/mn_doc_poc api/mn_doc_poc",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/index" }
   ]
