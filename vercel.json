@@ -1,5 +1,5 @@
 {
-  "buildCommand": "mkdir -p public && cp -r src/mn_doc_poc/__dist__/* public/ && cp -r src/mn_doc_poc api/mn_doc_poc",
+  "buildCommand": "mkdir -p public && cp -r src/mn_doc_poc/__dist__/* public/",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/index" }
   ]
